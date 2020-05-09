@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div class="page-wrap">
+            <div class="game-container">
+                <h1>Rock Paper Scissors Game</h1>
+                <p id="details">Choose between Rock, Paper, or Scissors, and play against the computer! The player who wins the most rounds out of 5 wins the game!</p>
+                <div class="btn">
+                    <input type="image" class="choice_btn" id="rock" alt="Rock" src="./noun_Fist_477918.png">
+                    <input type="image" class="choice_btn" id ="paper" alt="Paper" src="./noun_Hand_477922.png">
+                    <input type="image" class="choice_btn" id="scissors" alt="Scissors" src="./noun_Scissors_477919.png">
+                </div>
+                <div class='results'>
+                    <h2>Results of Game</h2>
+                    
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let playerScore = 0; 
+            let computerScore = 0;
+            let roundCount = 0;
+
+            function computerPlay() {
+                let randNum = Math.floor(Math.random() * 13);
+                if (randNum <= 3) {
+                    return "rock";
+                } else if (randNum > 3 && randNum <=7) {
+                    return "paper";
+                } else if (randNum > 7) {
+                    return "scissors";
+                }
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                roundCount++;
+
+                const resultRound = document.querySelector('div.results');
+                
+                const resultString = document.createElement('p.stringResult');
+                const roundString = document.createElement('p.stringRound');
+                
+                playerSelection = playerSelection.toLowerCase();
+                if (roundCount < 6) {
+                    
+                    if (playerSelection == "rock") {
+                        if (computerSelection == "paper") {
+                            computerScore++;
+                            resultString.textContent = `You Lose! Paper beats Rock`;
+                        } else if (computerSelection == "scissors") {
+                            playerScore++;
+                            resultString.textContent = `You Win! Rock beats Scissors!`
+                        } else {
+                            resultString.textContent = `TIE!!! No one wins! :(`
+                        }
+                    } else if(playerSelection == "paper") {
+                        if (computerSelection == "rock") {
+                            playerScore++;
+                            resultString.textContent= `You Win! Paper beats Rock`
+                        } else if (computerSelection == "scissors") {
+                            computerScore++;
+                            resultString.textContent = `You Lose! Scissors beats Paper!`
+                        } else {
+                            resultString.textContent = `TIE!!! No one wins! :(`
+                        }
+                    } else if (playerSelection == "scissors") {
+                        if (computerSelection == "paper") {
+                            playerScore++;
+                            resultString.textContent = `You win! Scissors beats paper`
+                        } else if (computerSelection == "rock") {
+                            computerScore++;
+                            resultString.textContent = `You Lose! Rock beats Scissors!`
+                        } else {
+                            resultString.textContent = `TIE!!! No one wins! :(`
+                        }
+                    }
+                } 
+                    
+
+                    //create button to restart game~
+
+                
+
+                roundString.textContent = `Round ${roundCount}
+                Player Selection: ${playerSelection} 
+                Computer Selection: ${computerSelection}`;
+                resultRound.appendChild(roundString);
+                resultRound.appendChild(resultString);
+            }
+            
+            const buttons = document.querySelectorAll('.choice_btn');
+            
+    
+            buttons.forEach((b) => {
+                b.addEventListener('click', (a) => {
+                    console.log(roundCount);
+                    if (roundCount < 5) {
+                        playRound(b.id, computerPlay());
+                    } else {
+                        const winner = document.createElement('p');
+                
+                        if (playerScore > computerScore) {
+                            winner.textContent= "Player wins the game";
+                        } else {
+                            winner.textContent = "Computer wins the game";
+                        }
+
+                        const EndResults = document.querySelector('div.results');
+                                
+                        console.log(EndResults);
+                        EndResults.appendChild(winner);
+                        roundCount = 0;
+                        playerScore = 0;
+                        computerScore = 0;
+
+                        
+                    }
+                 });
+            });
+    
+
+        </script>
+    </body>
+</html>

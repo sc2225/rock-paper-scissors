@@ -1,0 +1,7 @@
+#rock, #paper, #scissors {
+    height: 200px;
+    width: 200px;
+}
+.results {
+    border: 1px double black;
+}
