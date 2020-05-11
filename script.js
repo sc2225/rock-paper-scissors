@@ -26,8 +26,7 @@ function playRound(playerSelection, computerSelection) {
         //empty winner string
         const winner = document.querySelector('p#winner');
         winner.textContent="";
-        roundString.textContent = `Round ${roundCount}`
-       
+ 
 
         if (playerSelection == "rock") {
             if (computerSelection == "paper") {
@@ -37,7 +36,7 @@ function playRound(playerSelection, computerSelection) {
                 playerScore++;
                 resultString.textContent = `You Win! Rock beats Scissors!`
             } else {
-                resultString.textContent = `TIE!!! No one wins! :(`
+                resultString.textContent = `TIE!!! No one wins!`
             }
         } else if(playerSelection == "paper") {
             if (computerSelection == "rock") {
@@ -47,7 +46,7 @@ function playRound(playerSelection, computerSelection) {
                 computerScore++;
                 resultString.textContent = `You Lose! Scissors beats Paper!`
             } else {
-                resultString.textContent = `TIE!!! No one wins! :(`
+                resultString.textContent = `TIE!!! No one wins!`
             }
         } else if (playerSelection == "scissors") {
             if (computerSelection == "paper") {
@@ -57,7 +56,7 @@ function playRound(playerSelection, computerSelection) {
                 computerScore++;
                 resultString.textContent = `You Lose! Rock beats Scissors!`
             } else {
-                resultString.textContent = `TIE!!! No one wins! :(`
+                resultString.textContent = `TIE!!! No one wins!`
             }
         }
 
@@ -69,14 +68,10 @@ function playRound(playerSelection, computerSelection) {
                 } else {
                     winner.textContent = "Computer wins the game";
                 }
-
-                const EndResults = document.querySelector('div.results');
-                        
-                console.log(EndResults);
-                roundCount = 0;
-                playerScore = 0;
-                computerScore = 0;
+                
         }
+        roundString.textContent = `Round ${roundCount} | Player Score: ${playerScore} | Computer Score: ${computerScore}`
+       
     } 
 }
 
@@ -88,7 +83,12 @@ buttons.forEach((b) => {
 
         if (roundCount < 5) {
             playRound(b.id, computerPlay());
-        } 
+        } else {
+            roundCount = 0;
+            playerScore = 0;
+            computerScore = 0;
+            playRound(b.id, computerPlay());
+        }
             
 
             

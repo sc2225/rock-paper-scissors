@@ -15,8 +15,6 @@ p {
 
 .game-container {
     text-align: center;
-    
-   
 }
 
 .choice_btn {
@@ -28,8 +26,7 @@ p {
 }
 
 .choice_btn:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);   
 }
 
 .results {
@@ -39,9 +36,10 @@ p {
     width: 600px;
     margin: 0 auto;
     background-color: #FF6B6B;
+    padding: 5px;
 }
 
 #winner{
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 600;
 }
